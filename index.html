@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+ 
+</head> 
+<body> 
+    <img id="square" style="width: 100px; height: 100px; background-color: rgb(255, 189, 235);" src="https://m.media-amazon.com/images/I/71+mDoHG4mL.png"></img><br> 
+    <button id="getButton">GET</button>
+    <button id="postButton">POST</button>
+
+    <div id="response"></div>
+     
+<script> 
+    $(document).ready(function() { 
+    var $element = $("#square"); 
+     
+    $element.animate({ 
+        left: '+=100px', 
+        top: '+=100px', 
+        width: '500px', 
+        height: '500px' 
+    }, 1000);  
+    }); 
+ 
+    $(document).ready(function() {
+            $("#getButton").click(function() {
+                $.get("https://jsonplaceholder.typicode.com/posts/1", function(data) {
+                    $("#response").html(JSON.stringify(data, null, 2));
+                });
+            });
+
+            $("#postButton").click(function() {
+                var postData = {
+                    title: "фхщоарф-хыщзлвх",
+                    body: "фщоазфозфъцзлвх",
+                    userId: 123192730
+                };
+
+                $.post("https://jsonplaceholder.typicode.com/posts", postData, function(data) {
+                    $("#response").html(JSON.stringify(data, null, 2));
+                });
+            });
+        });
+
+</script> 
+</body> 
+</html>
